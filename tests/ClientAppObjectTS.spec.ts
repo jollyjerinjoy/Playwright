@@ -9,7 +9,9 @@ const {test, expect} = require("@playwright/test");
 //const Summary = require("../page-objects/Summary");
 //const PoManager = require("../page-objects/PoManager");
 
-test('@web Client Page Object Model-shoppingcart Application',async({page})=>{
+import { Page } from "@playwright/test";
+//test('@web Client Page Object Model-shoppingcart Application',async({page})=>{
+test('@web Client Page Object Model-shoppingcart Application',async({page}: { page: Page })=>{
  const username='standard_user';
  const password='secret_sauce';
  const pomanager=new PoManager(page);  //calling obj from PoManager
