@@ -35,18 +35,24 @@ test('popup validations',async({page})=>{    //ctl space import and remove defau
    console.log(await framepage.locator("#sampleHeading").textContent());  //before id use #
    await expect(framepage.locator("#sampleHeading")).toHaveText("This is a sample page");
   
-await page.pause();
+//await page.pause();
 
 })
-test.only('screenshot Operations',async({page})=>{
+test('screenshot Operations',async({page})=>{
     await page.goto("https://www.saucedemo.com/");
     await expect(page.locator("h3[data-test='error']")).toBeHidden();
     await page.locator("#login-button").click();
-    await page.locator("h3[data-test='error']").screenshot({
+    await page.locator("h3[data-test='error']").screenshot({     //locator screenshot
         path:'error.png'
     });
     await expect(page.locator("h3[data-test='error']")).toBeVisible();  
-    await page.screenshot({
+    await page.screenshot({      //page screenshot
         path:'error1.png'
     });
 })
+
+/*test('visual comparison',async({page})=>{
+    await page.goto('https://www.saucedemo.com/');
+    expect(await page.screenshot()).toMatchSnapshot('saucedemo.png'); //expect of page screenshot
+    //  await page.screenshot()     expected saucedemo.png
+})*/

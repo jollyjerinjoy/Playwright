@@ -25,8 +25,9 @@ for(let i=0;i<count;i++)
     if (await page.locator(".inventory_item_name").nth(i).textContent()===productName)
     {
         await page.locator(".inventory_item").nth(i).locator("text=Add to cart").click();
+        break;
     }
-    break;
+   // break;
 }
 //click cart
     await page.locator(".shopping_cart_link").click();

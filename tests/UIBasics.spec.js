@@ -1,5 +1,7 @@
 const {test,expect} = require("@playwright/test"); //import from playwright test package
 //old method
+test.describe.configure({mode:'serial'}); //to run tests in serial mode, it will run one by one, not in parallel
+//test.describe.configure({mode:'parallel'}); // 6 worker
 test('first playwright test',async function(){
 
 })
@@ -31,7 +33,7 @@ console.log(await cardTitles.first().textContent()); //to get text of first prod
 console.log(await cardTitles.nth(1).textContent()); //to get text of second product
 //print all product names using loop
 console.log(await cardTitles.allTextContents()); //to get text of all products in array format
-await page.pause(); //to pause the test execution and see the browser
+//await page.pause(); //to pause the test execution and see the browser
 })
 //using page context test
 //test.only for running only this test, it will ignore other tests in the file
@@ -79,7 +81,7 @@ await page.locator("#single-input-field").fill("Hello World"); //to fill message
 await page.locator("#button-one").click(); //to click on show message button
 await expect(page.locator("#message-one")).toHaveText("Your Message : Hello World"); //assertion for displayed message .toHaveText)
 
-await page.pause(); //to pause the test execution and see the browser
+//await page.pause(); //to pause the test execution and see the browser
 });
 
 //child window handling an dnew tab
@@ -97,10 +99,10 @@ test('child window handling',async({browser})=>{
     const newTab= await context.newPage();
     newTab.goto('https://google.com')
     console.log('child windows and nee tab opened successfully ')
-    await page.pause();
+   // await page.pause();
 })
 
-test.only('Special locators', async({page})=>{
+test('Special locators', async({page})=>{
     await page.goto("https://selenium.qabible.in/index.php"); //selectors hub. R.xpath
    //via locator// await page.locator("//a[normalize-space()='Input Form']").click();// selectors hub. R.xpath
    await page.getByRole("link",{name:"Input Form"} ).click();  //via link
@@ -140,5 +142,5 @@ test.only('Special locators', async({page})=>{
 
     
 
-    await page.pause();
+   // await page.pause();
 })

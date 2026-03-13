@@ -2,11 +2,12 @@
 
 const {test, expect } = require("@playwright/test");
 
-test('Client App Login',async({page})=>{   //import test
+test('@web Client App Login',async({page})=>{   //import test
 await page.goto("https://www.saucedemo.com");
 await page.locator("#user-name").fill("standard_user"); //copy css selector for username field
 await page.locator("#password").fill("secret_sauce");
 await page.locator("#login-button").click();
+//dashboard
 //idle time for login
 await page.waitForLoadState("networkidle");
 await page.locator(".inventory_item_name").first().waitFor(); //wait on first product
@@ -20,8 +21,9 @@ for(let i=0;i<count;i++)
     if (await page.locator(".inventory_item_name").nth(i).textContent()===productName)
     {
         await page.locator(".inventory_item").nth(i).locator("text=Add to cart").click();
+         break;
     }
-    break;
+   // break;
 }
 //click cart
 await page.locator(".shopping_cart_link").click();
@@ -39,5 +41,5 @@ console.log(itemTotal);
 expect(itemTotal).toContain("Item total: $29.99");
 await page.locator("#finish").click();
 expect(await page.locator(".complete-header")).toHaveText("Thank you for your order!");
-await page.pause(); //to pause the test execution and see the browser
+//await page.pause(); //to pause the test execution and see the browser
 })
