@@ -1,5 +1,5 @@
 import { PoManager } from "../page-objects TS/PoManager";
-import { customtest } from "../Util/test-base";
+import { customtest } from "../Util-TS/test-base";
 
 const {test, expect} = require("@playwright/test");
 //const Login = require("../page-objects/login");
@@ -11,7 +11,7 @@ const {test, expect} = require("@playwright/test");
 
 import { Page } from "@playwright/test";
 //test('@web Client Page Object Model-shoppingcart Application',async({page})=>{
-test('@web Client Page Object Model-shoppingcart Application',async({page}: { page: Page })=>{
+test('@web Client Page Object Model-shoppingcart Application',async({page})=>{
  const username='standard_user';
  const password='secret_sauce';
  const pomanager=new PoManager(page);  //calling obj from PoManager
@@ -48,4 +48,25 @@ await summaryobj.Finish();
 await expect(page.locator(".complete-header")).toHaveText("Thank you for your order!");
 //await page.pause(); //to pause the test execution and see the browser
 
+})
+customtest.only('playwright -Client App Login with Customised Test Data',async({page,testDataForOrder})=>{ //reading custom test data from test-base.js file, use backticks for template literal and ${} for variable in test name
+       //import test
+       const pomanager=new PoManager(page);  //calling obj from PoManager
+ //const login=new Login(page);
+ const login=pomanager.getLogin();   //PoManager returns
+ await login.goto();
+ await login.validLogin(testDataForOrder.username, testDataForOrder.password);  //using custom test data for login
+
+ //const dash=new DashBoard(page);
+ const dash=pomanager.getDashBoard();   //PoManager returns
+ //const productname='Sauce Labs Backpack';
+ console.log(testDataForOrder.productname);
+ await dash.selectProduct(testDataForOrder.productname);
+ await dash.moveToCarts();
+
+//const cartobj=new Cart(page);
+const cartobj=pomanager.getCart(); //PoManager returns
+await cartobj.getChecked();
+//expect(await page.locator(".inventory_item_name").isVisible()).toBeTruthy(); //assert , import expect 
+await cartobj.checkOut();
 })
