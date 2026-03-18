@@ -11,7 +11,7 @@ const {test, expect} = require("@playwright/test");
 
 import { Page } from "@playwright/test";
 //test('@web Client Page Object Model-shoppingcart Application',async({page})=>{
-test('@web Client Page Object Model-shoppingcart Application',async({page}: { page: Page })=>{
+        test.only('@web Client Page Object Model-shoppingcart Application',async({page})=>{
  const username='standard_user';
  const password='secret_sauce';
  const pomanager=new PoManager(page);  //calling obj from PoManager
@@ -37,7 +37,8 @@ const shippingdetailsobj=pomanager.getShippingDetails(); //PoManager returns
 const firstname='jol';
 const lastname='jk';
 const postalcode='2123';
-await shippingdetailsobj.ShipmentDetails();
+await shippingdetailsobj.ShipmentDetails(firstname, lastname, postalcode); //using parameters for data driven testing  
+
 await shippingdetailsobj.ClickContinue();
 
 //const summaryobj=new Summary(page); //commenting for PoManager
@@ -49,7 +50,7 @@ await expect(page.locator(".complete-header")).toHaveText("Thank you for your or
 //await page.pause(); //to pause the test execution and see the browser
 
 })
-customtest.only('playwright -Client App Login with Customised Test Data',async({page,testDataForOrder})=>{ //reading custom test data from test-base.js file, use backticks for template literal and ${} for variable in test name
+customtest('playwright -Client App Login with Customised Test Data',async({page,testDataForOrder})=>{ //reading custom test data from test-base.js file, use backticks for template literal and ${} for variable in test name
        //import test
        const pomanager=new PoManager(page);  //calling obj from PoManager
  //const login=new Login(page);

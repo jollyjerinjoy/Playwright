@@ -10,7 +10,7 @@ const TestData=JSON.parse(JSON.stringify(require("../Util/placeOrderTestData.jso
 //forlloop to run test for each data in json file
 for(const data of TestData) //set of data in TestData from json file
     {
-test(`@web Client Page Object Model-shoppingcart Application-${data.productname}`,async({page})=>{ //use backticks for template literal and ${} for variable in test name
+test.only(`@web Client Page Object Model-shoppingcart Application-${data.productname}`,async({page})=>{ //use backticks for template literal and ${} for variable in test name
  //const username='standard_user'; //json data
  //const password='secret_sauce'; //json data
  const pomanager=new PoManager(page);  //calling obj from PoManager
@@ -37,7 +37,8 @@ const shippingdetailsobj=pomanager.getShippingDetails(); //PoManager returns
 const firstname='jol';
 const lastname='jk';
 const postalcode='2123';
-await shippingdetailsobj.ShipmentDetails();
+//await shippingdetailsobj.ShipmentDetails("jol", "jk", "2123"); //using parameters for data driven testing
+await shippingdetailsobj.ShipmentDetails(firstname, lastname, postalcode); //using parameters for data driven testing
 await shippingdetailsobj.ClickContinue();
 
 //const summaryobj=new Summary(page); //commenting for PoManager
@@ -50,7 +51,7 @@ await expect(page.locator(".complete-header")).toHaveText("Thank you for your or
 
 })
 }
-customtest.only('playwright -Client App Login with Customised Test Data',async({page,testDataForOrder})=>{ //reading custom test data from test-base.js file, use backticks for template literal and ${} for variable in test name
+customtest('playwright -Client App Login with Customised Test Data',async({page,testDataForOrder})=>{ //reading custom test data from test-base.js file, use backticks for template literal and ${} for variable in test name
        //import test
        const pomanager=new PoManager(page);  //calling obj from PoManager
  //const login=new Login(page);

@@ -1,6 +1,6 @@
 Feature: Ecommerce Validation
 Scenario: placing order for a product in a Ecommerce website
-Given Enter the username "standard_use" and password "secret_sauce" and cick on login button
+Given Enter the username "standard_user" and password "secret_sauce" and cick on login button
 When the dashboard is visible and  the product "Sauce Labs Backpack" is added to cart
 Then the cart is visible and click on checkout button 
 When the shipping details are entered and click on continue button
