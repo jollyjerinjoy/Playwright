@@ -3,9 +3,9 @@ const PoManager = require("../../page-objects/PoManager");
 const { chromium, expect } = require("@playwright/test");
 
         Given('Enter the username {string} and password {string} and cick on login button', async function (username, password) {
-         const browser=await chromium.launch({headless:false}); //to launch the browser in headed mode, by default it is headless mode
-         const context=await browser.newContext(); //to create a new browser context, it is like a new incognito window, it helps to isolate the tests and run them in parallel
-         this.page=await context.newPage(); //to create a new page in the browser context, it is like a new tab in the browser   
+         //const browser=await chromium.launch({headless:false}); //to launch the browser in headed mode, by default it is headless mode
+       //  const context=await browser.newContext(); //to create a new browser context, it is like a new incognito window, it helps to isolate the tests and run them in parallel
+       //  this.page=await context.newPage(); //to create a new page in the browser context, it is like a new tab in the browser   
 
          this.pomanager=new PoManager(this.page);  //calling obj from PoManager
 
