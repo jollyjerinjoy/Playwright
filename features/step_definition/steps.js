@@ -49,5 +49,18 @@ const { chromium, expect } = require("@playwright/test");
          Then('the order confirmation message is visible-Thank you for your order! is displayed', async function () {
             await expect(this.page.locator(".complete-header")).toHaveText("Thank you for your order!");  //assert, import expect
          });
+//scenario2
 
+          Given('Enter {string} and {string} and cick on login button', async function (username, password) {
+           // Write code here that turns the phrase above into concrete actions
+             await this.page.goto("https://www.saucedemo.com");
+             await this.page.locator("#user-name").fill(username);  //uibasics
+             await this.page.locator("#password").fill(password);
+             await this.page.locator("#login-button").click();
+           
+         });
+         Then('the error message is visible and it contains - Username and password do not match any user in this service',async function () {
+            console.log(await this.page.locator("h3[data-test='error']").textContent()); //for error message)
+            await expect(this.page.locator("h3[data-test='error']")).toContainText("Epic sadface"); //assertion for error message
+         });
  

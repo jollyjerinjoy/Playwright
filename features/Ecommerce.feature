@@ -7,3 +7,8 @@ When the shipping details are entered and click on continue button
 Then the order summary of the order is visible
 When click on finish button
 Then the order confirmation message is visible-Thank you for your order! is displayed
+
+
+Scenario: validating error message for invalid login
+Given Enter "standard_user" and "secret" and cick on login button
+Then the error message is visible and it contains - Username and password do not match any user in this service

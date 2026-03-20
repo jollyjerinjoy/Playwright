@@ -21,7 +21,7 @@ console.log(await page.locator("h3[data-test='error']").textContent()); //for er
 await expect(page.locator("h3[data-test='error']")).toContainText("Epic sadface"); //assertion for error message
 //await expect(page.locator("h3[data-test='error']")).toHaveText("Epic sadface: Username and password do not match any user in this service"); //assertion for error message
 
-//logion for login with valid credentials
+//logion for login with invalid credentials
 await page.locator("#user-name").fill(""); //copy css selector for username field
 await page.locator("#user-name").fill("standard_user");
 //await page.locator("#password").fill("secret_sauce");
