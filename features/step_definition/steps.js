@@ -59,7 +59,7 @@ const { chromium, expect } = require("@playwright/test");
              await this.page.locator("#login-button").click();//uibasic
            
          });
-         Then('the error message is visible and it contains - Username and password do not match',async function () {
+         Then('the error message is visible and it contains - Username and password',async function () {
             console.log(await this.page.locator("h3[data-test='error']").textContent()); //for error message)
             await expect(this.page.locator("h3[data-test='error']")).toContainText("Epic sadface"); //assertion for error message
          });
